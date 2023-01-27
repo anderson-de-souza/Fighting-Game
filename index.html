@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fighting Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <div style="position: relative; display: inline-block;">
+    
+    <div style="position: absolute; display: flex; width: 100%; align-items: center; padding: 20px;">
+      
+      <!-- Player Health -->
+      <div style="position: relative; width: 100%; display: flex; justify-content: flex-end; border: 4px solid white; border-right: none;">
+        <div style="background-color: red; height: 30px; width: 100%;"></div>
+        <div id="playerHealth" style="background-color: #818CF8; position: absolute; top: 0; right: 0; bottom: 0; width: 100%;"></div>
+      </div>
+      
+      <!-- Time -->
+      <div id="timer" style="background-color: black; width: 75px; height: 75px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; color: white; border: 4px solid white; font-family: game;">60</div>
+      
+      <!-- Enemy Health -->
+      <div style="position: relative; width: 100%; border: 4px solid white; border-left: none;">
+        <div style="background-color: red; height: 30px;"></div>
+        <div id="enemyHealth" style="background-color: #818CF8; position: absolute; top: 0; right: 0; bottom: 0; left: 0;"></div>
+      </div>
+      
+    </div>
+    
+    <div id="displayText" style="position: absolute; color: white; display: none; justify-content: center; align-items: center; top: 0; right: 0; bottom: 0; left: 0; font-family: game;">Tie</div>
+    
+    <canvas></canvas>
+    
+  </div>
+  
+  <div class="button" onclick="attackplayer()"></div>
+  
+  <div class="button" onclick="attackenemy()"></div>
+  
+  <div class="button" ontouchstart="jumpPlayer()"></div>
+  <div class="button" ontouchstart="jumpEnemy()"></div>
+  
+  <div class="button" ontouchstart="move('ArrowLeft')" ontouchend="stop('ArrowLeft')"></div>
+  <div class="button" ontouchstart="move('ArrowRight')" ontouchend="stop('ArrowRight')"></div>
+  
+  <script src="gsap.min.js"></script>
+  
+  <script src="classes.js"></script>
+  
+  <script src="utils.js"></script>
+ 
+  <script src="main.js"></script>
+  
+  <script>
+    
+    function attackplayer() {
+      player.attack()
+    }
+    
+    function attackenemy() {
+      enemy.attack()
+    }
+    
+    function move(key) {
+      if (!player.dead) {
+  
+    switch (key) {
+    
+      case 'd':
+        keys.d.pressed = true
+        player.lastKey = 'd'
+        break
+    
+      case 'a':
+        keys.a.pressed = true
+        player.lastKey = 'a'
+        break
+      
+      case 'w':
+        player.velocity.y = -20
+        break
+      
+      case ' ':
+        player.attack()
+        break
+      
+    }
+    
+  }
+  
+  if (!enemy.dead) {
+  
+    switch (key) {
+    
+      case 'ArrowRight':
+        keys.ArrowRight.pressed = true
+        enemy.lastKey = 'ArrowRight'
+        break
+    
+      case 'ArrowLeft':
+        keys.ArrowLeft.pressed = true
+        enemy.lastKey = 'ArrowLeft'
+        break
+      
+      case 'ArrowUp':
+        enemy.velocity.y = -20
+        break
+    
+      case 'ArrowDown':
+        enemy.attack()
+        break
+    }
+  
+  }
+    }
+    
+    function stop(key) {
+      switch (key) {
+    
+    case 'd':
+      keys.d.pressed = false
+      break
+    
+    case 'a':
+      keys.a.pressed = false
+      break
+      
+  }
+  
+  switch (key) {
+    
+    case 'ArrowRight':
+      keys.ArrowRight.pressed = false
+      break
+    
+    case 'ArrowLeft':
+      keys.ArrowLeft.pressed = false
+      break
+      
+  }
+    }
+    
+    function jumpPlayer() {
+      player.velocity.y = -20
+    }
+    
+    function jumpEnemy() {
+      enemy.velocity.y = -20
+    }
+    
+  </script>
+  
+</body>
+</html>

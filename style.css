@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.button {
+  width: 150px;
+  height: 150px;
+  background-color: deepskyblue;
+  text-align: center;
+  display: inline-block;
+  vertical-align: center;
+}
+
+@font-face {
+  font-family: game;
+  src: url('/font/PressStart2P-Regular.ttf');
+}

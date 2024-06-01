@@ -1,13 +1,17 @@
 function determineWinner({ player, enemy, timerId }) {
   if (player.health === enemy.health) {
-    document.querySelector('#displayText').innerHTML = 'Tie'
+    document.querySelector('#displayText').innerHTML = getMessageFormat('Tie')
   } else if (player.health > enemy.health) {
-    document.querySelector('#displayText').innerHTML = 'Player 1 Wins'
+    document.querySelector('#displayText').innerHTML = getMessageFormat('Player 1 Wins')
   } else if (enemy.health > player.health) {
-    document.querySelector('#displayText').innerHTML = 'Player 2 Wins'
+    document.querySelector('#displayText').innerHTML = getMessageFormat('Player 2 Wins')
   }
   document.querySelector('#displayText').style.display = 'flex'
   clearTimeout(timerId)
+}
+
+function getMessageFormat(value) {
+  return `<h1 style="background-color: black; padding: 20px; border-radius: 10px;">${ value }</h1>`
 }
 
 let timer = 60

@@ -9,7 +9,7 @@
 </head>
 <body>
   
-  <div style="position: relative; display: inline-block;">
+  <div style="width: 100vw; height: 100vh; position: relative; display: flex;">
     
     <div style="position: absolute; display: flex; width: 100%; align-items: center; padding: 20px;">
       
@@ -36,16 +36,6 @@
     
   </div>
   
-  <div class="button" onclick="attackplayer()"></div>
-  
-  <div class="button" onclick="attackenemy()"></div>
-  
-  <div class="button" ontouchstart="jumpPlayer()"></div>
-  <div class="button" ontouchstart="jumpEnemy()"></div>
-  
-  <div class="button" ontouchstart="move('ArrowLeft')" ontouchend="stop('ArrowLeft')"></div>
-  <div class="button" ontouchstart="move('ArrowRight')" ontouchend="stop('ArrowRight')"></div>
-  
   <script src="gsap.min.js"></script>
   
   <script src="classes.js"></script>
@@ -53,105 +43,6 @@
   <script src="utils.js"></script>
  
   <script src="main.js"></script>
-  
-  <script>
-    
-    function attackplayer() {
-      player.attack()
-    }
-    
-    function attackenemy() {
-      enemy.attack()
-    }
-    
-    function move(key) {
-      if (!player.dead) {
-  
-    switch (key) {
-    
-      case 'd':
-        keys.d.pressed = true
-        player.lastKey = 'd'
-        break
-    
-      case 'a':
-        keys.a.pressed = true
-        player.lastKey = 'a'
-        break
-      
-      case 'w':
-        player.velocity.y = -20
-        break
-      
-      case ' ':
-        player.attack()
-        break
-      
-    }
-    
-  }
-  
-  if (!enemy.dead) {
-  
-    switch (key) {
-    
-      case 'ArrowRight':
-        keys.ArrowRight.pressed = true
-        enemy.lastKey = 'ArrowRight'
-        break
-    
-      case 'ArrowLeft':
-        keys.ArrowLeft.pressed = true
-        enemy.lastKey = 'ArrowLeft'
-        break
-      
-      case 'ArrowUp':
-        enemy.velocity.y = -20
-        break
-    
-      case 'ArrowDown':
-        enemy.attack()
-        break
-    }
-  
-  }
-    }
-    
-    function stop(key) {
-      switch (key) {
-    
-    case 'd':
-      keys.d.pressed = false
-      break
-    
-    case 'a':
-      keys.a.pressed = false
-      break
-      
-  }
-  
-  switch (key) {
-    
-    case 'ArrowRight':
-      keys.ArrowRight.pressed = false
-      break
-    
-    case 'ArrowLeft':
-      keys.ArrowLeft.pressed = false
-      break
-      
-  }
-    }
-    
-    function jumpPlayer() {
-      player.velocity.y = -20
-    }
-    
-    function jumpEnemy() {
-      enemy.velocity.y = -20
-    }
-    
-  </script>
   
 </body>
 </html>
